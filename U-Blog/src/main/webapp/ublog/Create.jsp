@@ -34,7 +34,35 @@
         11. Provide "Post" submit button.
         12. Provide a link to the "Home Page".
 -->
-
+<html>
+    <head>
+        <title>Create post</title>
+    </head>
+    <body>
+        <form method="post" action="/ublog/post">
+            <table>
+            <tr>
+                <td><label>User Email:</label></td>
+                <td><input type="email" value="<%=request.getSession().getAttribute("uemail")%>" placeholder="example@email.com"></td>
+            </tr>
+            <tr>
+                <td><label>Blog Title:</label></td>
+                <td><input type="text" maxlength="200" placeholder="Title" required name="blogtitle"></td>
+            </tr>
+            <tr>
+                <td><label>Blog tag:</label></td>
+                <td><input type="text" maxlength="10" placeholder="java" required/></td>
+            </tr>
+            <tr>
+                <td><label>Blog Description:</label></td>
+                <td><textarea type="text" maxlength="1000" placeholder="Post Description" required rows="15" cols="75"></textarea></td>
+            </tr>
+            </table>
+        <input type="submit" value="Post">
+        <a href="/Home.jsp">Home</a>
+        </form>
+    </body>
+</html>
 <!--
     TODO: 4.17. If the user is logged in then display the string before @ in the user email id
     on this web page. For example, if email id is example@gmail.com, then display "Logged In as example"

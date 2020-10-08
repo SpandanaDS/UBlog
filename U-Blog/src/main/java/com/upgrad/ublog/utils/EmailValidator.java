@@ -1,5 +1,10 @@
 package com.upgrad.ublog.utils;
 
+import com.upgrad.ublog.exceptions.EmailNotValidException;
+
+import java.util.Arrays;
+import java.util.List;
+
 /**
  * TODO: 5.1. Create a method with the following signature.
  *  public static boolean isValidEmail(String email) throws EmailNotValidException
@@ -12,8 +17,15 @@ package com.upgrad.ublog.utils;
  */
 
 public class EmailValidator {
+    public static boolean isValidEmail(String email) throws EmailNotValidException {
+        String regex="^[a-zA-Z0-9_.]+@[a-zA-Z].[a-zA-Z]{2,6}$";
+        if(email.matches(regex)){
+            return true;
+        }
+        return false;
+    }
 
-/*
+
     public static void main(String[] args) {
 		List<String> passingEmails = Arrays.asList(
 				"ish@so.com",
@@ -50,5 +62,5 @@ public class EmailValidator {
 			}
 		}
 	}
-	*/
+
 }

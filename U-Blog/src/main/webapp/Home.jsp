@@ -24,3 +24,26 @@
 	        and Logout.jsp page. They should be provided in the same order as shown on the learn platform with
 	        some spacing between them.
 -->
+<html>
+	<head>
+		<title>Home</title>
+	</head>
+	<body>
+		<p> Logged in as <%=request.getParameter("useremail").substring(0,request.getParameter("useremail").indexOf("@"))%></p>
+		<a href="/ublog/Create.jsp">Create</a>
+		<a href="/ublog/Search.jsp">Search</a>
+		<a href="/ublog/Delete.jsp">Delete</a>
+		<a href="/ublog/Filter.jsp">Filter</a>
+		<a href="/ublog/Logout.jsp">Logout</a>
+	</body>
+</html>
+<%
+	try {
+		Boolean isLoggedIn = (Boolean) session.getAttribute("isLoggedIn");
+		if (!isLoggedIn) {
+			response.sendRedirect("/index.jsp");
+		}
+	} catch (Exception ex) {
+		response.sendRedirect("/index.jsp");
+	}
+%>

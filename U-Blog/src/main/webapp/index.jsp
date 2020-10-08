@@ -28,6 +28,36 @@
         7. Use the table tag to align the labels and text fields.
         8. Provide "Sign In" and "Sign Up" submit buttons.
 -->
+<html>
+<head>
+    <title>Sign In/Sign Up</title>
+</head>
+<body>
+<form method="post" action="/ublog/user">
+    <table>
+        <tr>
+            <td><label>User Email:</label></td>
+            <td><input type="email" placeholder="example@email.com" required name="useremail" id="useremail"></td>
+        </tr>
+        <td><label>Password:</label></td>
+        <td><input type="password" placeholder="********" name="password" id="password" required></td>
+    </table>
+    <input type="submit" value="Sign In" name="actionType"/>
+    <input type="submit" value="Sign Up" name="actionType"/>
+</form>
+</body>
+</html>
+
+<%--<%
+    try {
+        Boolean isLoggedIn = (Boolean) session.getAttribute("isLoggedIn");
+        if (!isLoggedIn) {
+            response.sendRedirect("/index.jsp");
+        }
+    } catch (Exception ex) {
+        response.sendRedirect("/index.jsp");
+    }
+%>--%>
 
 <!--
     TODO: 4.12. Write the Java code to display the error message present in the request object. The

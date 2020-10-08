@@ -29,6 +29,18 @@ package com.upgrad.ublog.servlets;
  * TODO: 5.6: Remove the same mapping from the Deployment Descriptor otherwise, you will get an error.
  */
 
+import com.upgrad.ublog.exceptions.EmailNotValidException;
+import com.upgrad.ublog.utils.EmailValidator;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.IOException;
+import java.util.Enumeration;
+
 /**
  * TODO: 6.16. When the user click on the Sign In button on the Sign In/ Sign Up page, handle the
  *  following scenarios. (Hint: Use ServiceFactory to get UserService. Override the init() method
@@ -52,7 +64,41 @@ package com.upgrad.ublog.servlets;
  *  TODO 6.18: If UserService is not able to process the request and throws an exception, get the
  *   message stored in the exception object and display the same message on the index.jsp page.
  */
+@WebServlet("/ublog/user")
+public class UserServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String useremail = req.getParameter("useremail");
+        String password = req.getParameter("password");
+        String actionType = req.getParameter("actionType");
+        try {
+            if(EmailValidator.isValidEmail(useremail)){
 
-public class UserServlet {
+                switch (actionType) {
+                    case "Sign In":
+                    case "Sign Up":
+                        try{
+                            req.getSession().setAttribute("isLoggedIn", true);
+                            req.getSession().setAttribute("uemail", useremail);
+                            req.getRequestDispatcher("/Home.jsp").forward(req, resp);
+                        }
+                        catch (Exception e) {
+                            req.setAttribute("isError", true);
+                            req.setAttribute("error", e.getMessage());
+                            req.getRequestDispatcher("/index.jsp").forward(req, resp);
+                        }
+                        break;
+                    default:
+                        System.out.println("No such action type");
+                        break;
+                }
+            }
+        } catch (EmailNotValidException e) {
+            e.printStackTrace();
+            req.getRequestDispatcher("/index.jsp");
+        }
 
+
+    }
 }
+

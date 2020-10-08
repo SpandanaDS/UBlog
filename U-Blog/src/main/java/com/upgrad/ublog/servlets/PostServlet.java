@@ -40,6 +40,14 @@ package com.upgrad.ublog.servlets;
  *  Print the "System.getProperty("user.dir")" to know where the log file is created.
  */
 
+import com.upgrad.ublog.dto.PostDTO;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 /**
  * TODO 9.1: Modify the existing code such that the following two operations occur simultaneously on
  *  two independent threads.
@@ -47,6 +55,10 @@ package com.upgrad.ublog.servlets;
  *  thread2: Writing logs into the file
  */
 
-public class PostServlet {
+public class PostServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        PostDTO postDTO=new PostDTO();
+    }
 
 }
