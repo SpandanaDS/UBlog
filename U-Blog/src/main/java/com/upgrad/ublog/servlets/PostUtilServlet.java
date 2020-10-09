@@ -42,6 +42,8 @@ package com.upgrad.ublog.servlets;
  *   to the request object.
  */
 
+import javax.servlet.annotation.WebServlet;
+
 /**
  * TODO: 7.29. If the request is coming from the Filter.jsp page, then do the following:
  *  1. Retrieve the tag from the request object.
@@ -55,7 +57,7 @@ package com.upgrad.ublog.servlets;
  *   all those exceptions, pass the message stored in the exceptions to the Filter.jsp page as an attribute
  *   to the request object.
  */
-
+@WebServlet("/ublog/post/util")
 public class PostUtilServlet {
 
 }

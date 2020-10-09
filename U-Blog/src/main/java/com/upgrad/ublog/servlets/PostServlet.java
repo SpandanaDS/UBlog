@@ -43,6 +43,7 @@ package com.upgrad.ublog.servlets;
 import com.upgrad.ublog.dto.PostDTO;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -54,6 +55,7 @@ import java.io.IOException;
  *  thread1: Saving data into the database
  *  thread2: Writing logs into the file
  */
+@WebServlet("/ublog/post")
 
 public class PostServlet extends HttpServlet {
     @Override

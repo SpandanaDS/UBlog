@@ -71,18 +71,17 @@ public class UserServlet extends HttpServlet {
         String useremail = req.getParameter("useremail");
         String password = req.getParameter("password");
         String actionType = req.getParameter("actionType");
+        System.out.println(actionType);
         try {
-            if(EmailValidator.isValidEmail(useremail)){
-
+            if (EmailValidator.isValidEmail(useremail)) {
                 switch (actionType) {
                     case "Sign In":
                     case "Sign Up":
-                        try{
+                        try {
                             req.getSession().setAttribute("isLoggedIn", true);
                             req.getSession().setAttribute("uemail", useremail);
                             req.getRequestDispatcher("/Home.jsp").forward(req, resp);
-                        }
-                        catch (Exception e) {
+                        } catch (Exception e) {
                             req.setAttribute("isError", true);
                             req.setAttribute("error", e.getMessage());
                             req.getRequestDispatcher("/index.jsp").forward(req, resp);
@@ -93,12 +92,12 @@ public class UserServlet extends HttpServlet {
                         break;
                 }
             }
+
         } catch (EmailNotValidException e) {
             e.printStackTrace();
             req.getRequestDispatcher("/index.jsp");
         }
-
-
     }
 }
+
 
