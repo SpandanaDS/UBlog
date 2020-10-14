@@ -20,7 +20,7 @@ public class DatabaseConnection {
 
     public static Connection getConnection() {
         if (connection == null) {
-            String url = "jdbc:oracle:thin@localhost:1521:xe";
+            String url = "jdbc:oracle:thin:@localhost:1521:xe";
             String username = "spandy";
             String password = "spandy";
 
